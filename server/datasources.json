@@ -1,0 +1,31 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "mongo": {
+    "host": "localhost",
+    "port": 27017,
+    "url": "mongodb://himanshu:negi@localhost:27017/demo",
+    "database": "demo",
+    "password": "negi",
+    "name": "mongo",
+    "user": "himanshu",
+    "connector": "mongodb"
+  },
+  "Greeting": {
+    "name": "Greeting",
+    "connector": "rest",
+    "operations": [
+      {
+        "template": {
+          "method": "GET",
+          "url": "http://localhost:3001/api/greetings"
+        },
+        "functions": {
+          "find": []
+        }
+      }
+    ]
+  }
+}

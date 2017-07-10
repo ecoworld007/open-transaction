@@ -1,0 +1,135 @@
+swagger: "2.0"
+info:
+  description: "This is Api contain the transaction resource operations"
+  version: "0.0.1"
+  title: "Transactions Model Specification"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "hnegi@sapient.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "localhost:3000"
+basePath: "/v1"
+schemes:
+- "http"
+paths:
+  /transactions:
+    get:
+      tags:
+      - "transaction"
+      summary: "get transactions for given account number and sort code"
+      operationId: "getTransactions"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "accountNumber"
+        in: "query"
+        description: "account identifier"
+        required: true
+        type: "string"
+      - name: "sortCode"
+        in: "query"
+        description: "sort by code"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: '#/definitions/ApiSuccessResponse'
+        400:
+          description: "Invalid status value"
+          schema:
+            $ref: '#/definitions/ApiErrorResponse'
+definitions:
+  Transaction:
+    type: "object"
+    description: "Base Transactions Composite Model containing attributes"
+    properties:
+      TransactionId:
+        type: "string"
+        description: "transaction identifier"
+      PermanentAccountNumber:
+        type: "string"
+        description: "permanent account identifier"
+      TransactionAmount:
+        type: "string"
+        format: "double"
+        description: "amount that is transferred"
+      TransactionCurrencyCode:
+        type: "string"
+        description: "transaction currency code"
+      CreditDebitIndicator:
+        type: "string"
+        enum:
+          - "C"
+          - "D"
+        description: "is this transaction credit(C) or debit(D)"
+      TransactionStatus:
+        type: "string"
+        enum:
+          - "P"
+          - "A"
+          - "EarMark"
+        description: "status of transaction pending(P) or approved(A)"
+      PostedDateTime:
+        type: "string"
+        format: "date-time"
+        description: "posted date time"
+      BookedDateTime:
+        type: "string"
+        description: "booked date time"
+      TransactionDescription:
+        type: "string"
+        description: "description about transaction made"
+      Type:
+        type: "string"
+        enum:
+          - "EarMark"
+        description: "type of transaction"
+      InterimBookedBalanceAmount:
+        type: "string"
+        description: "InterimBookedBalanceAmount"
+      InterimBookedBalanceCurrencyCode:
+        type: "string"
+        description: "InterimBookedBalanceCurrencyCode"
+      BankTransactionCode:
+        type: "string"
+        description: "Bank Transaction Code"
+      BankTransactionSubCode:
+        type: "string"
+        description: "Bank Transaction Sub Code"
+      ProprietaryTransactionCode:
+        type: "string"
+        description: "Proprietary Transaction Code"
+      ProprietaryTransactionIssuer:
+        type: "string"
+        description: "Proprietary Transaction Issuer"
+      MerchantName:
+        type: "string"
+        description: "Merchant Name"
+      MerchantCategoryCode:
+        type: "string"
+        description: "Merchant Category Code"
+      InterimBookedCreditDebitIndicator:
+        type: "string"
+        description: "Interim Booked Credit Debit Indicator"
+  ApiSuccessResponse:
+    type: "object"
+    properties:
+      Transactions:
+        type: "array"
+        items:
+          $ref: '#/definitions/Transaction'
+      ThirdPartyOutput:
+        type: "string"
+  ApiErrorResponse:
+    type: "object"
+    properties:
+      code:
+       type: "string"
+      message:
+       type: "string"

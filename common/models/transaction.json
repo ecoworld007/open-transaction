@@ -1,0 +1,88 @@
+{
+  "name": "Transaction",
+  "base": "PersistedModel",
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "TransactionId": {
+      "type": "string",
+      "id": true,
+      "generated": true
+    },
+    "PermanentAccountNumber": {
+      "type": "string",
+      "required": true
+    },
+    "TransactionAmount": {
+      "type": "string",
+      "required": true
+    },
+    "TransactionCurrencyCode": {
+      "type": "string",
+      "required": true
+    },
+    "CreditDebitIndicator": {
+      "type": "string"
+    },
+    "TransactionStatus": {
+      "type": "string"
+    },
+    "Type": {
+      "type": "string"
+    },
+    "InterimBookedCreditDebitIndicator": {
+      "type": "string",
+      "required": true
+    },
+    "MerchantCategoryCode": {
+      "type": "string",
+      "required": true
+    },
+    "MerchantName": {
+      "type": "string",
+      "required": true
+    },
+    "ProprietaryTransactionIssuer": {
+      "type": "string",
+      "required": true
+    },
+    "ProprietaryTransactionCode": {
+      "type": "string",
+      "required": true
+    },
+    "BankTransactionSubCode": {
+      "type": "string",
+      "required": true
+    },
+    "BankTransactionCode": {
+      "type": "string",
+      "required": true
+    },
+    "InterimBookedBalanceCurrencyCode": {
+      "type": "string",
+      "required": true
+    },
+    "InterimBookedBalanceAmount": {
+      "type": "string",
+      "required": true
+    },
+    "TransactionDescription": {
+      "type": "string",
+      "required": true
+    },
+    "BookedDateTime": {
+      "type": "string",
+      "required": true
+    },
+    "PostedDateTime": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}
